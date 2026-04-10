@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagious: Why Things Catch On - Interactive Lesson</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f7fb;
+  color: #1f2d3d;
+}
+
+header {
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  background: #34495e;
+}
+
+nav button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: #34495e;
+  color: white;
+  cursor: pointer;
+}
+
+nav button:hover, nav button.active {
+  background: #1abc9c;
+}
+
+section {
+  display: none;
+  padding: 20px;
+}
+
+section.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+button.quiz-btn {
+  margin-top: 10px;
+  padding: 8px;
+  background: #1abc9c;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.feedback {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Contagious: Why Things Catch On</h1>
+<p>Social Media Marketing & Content Creation</p>
+</header>
+
+<nav>
+<button class="tab active" onclick="openTab(event, 'overview')">Core Overview</button>
+<button class="tab" onclick="openTab(event, 'analysis')">Close Reading</button>
+<button class="tab" onclick="openTab(event, 'reflection')">Reflection</button>
+<button class="tab" onclick="openTab(event, 'discussion')">Discussion</button>
+<button class="tab" onclick="openTab(event, 'quiz')">Self-Check Quiz</button>
+</nav>
+
+<section id="overview" class="active">
+<div class="card">
+<h2>What You Will Learn</h2>
+<p>In this lesson, you will learn how and why content spreads online using the STEPPS framework. You will apply these ideas to real social media content and your own work.</p>
+</div>
+
+<div class="card">
+<h2>STEPPS Framework</h2>
+<ul>
+<li><b>Social Currency:</b> People share things that make them look good</li>
+<li><b>Triggers:</b> What reminds people to share</li>
+<li><b>Emotion:</b> Content that makes people feel something spreads more</li>
+<li><b>Public:</b> Easy-to-see content spreads faster</li>
+<li><b>Practical Value:</b> Helpful information gets shared</li>
+<li><b>Stories:</b> People share stories, not ads</li>
+</ul>
+</div>
+</section>
+
+<section id="analysis">
+<div class="card">
+<h2>Close Reading Prompts</h2>
+<ul>
+<li>Which STEPPS concept stood out most to you?</li>
+<li>What example from the book was easiest to understand?</li>
+<li>How does emotion affect sharing behavior?</li>
+<li>Why do people share content even if it is not useful?</li>
+<li>What is one example of “social currency” in your life?</li>
+<li>How does visibility impact what spreads?</li>
+<li>What surprised you most about the book?</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Quote Explorer</h2>
+<p><b>Click to reveal insight:</b></p>
+
+<button onclick="toggle('q1')">"People don’t share information, they share emotions."</button>
+<p id="q1" class="hidden">👉 Why does emotional content perform better on TikTok or Instagram?</p>
+
+<button onclick="toggle('q2')">"Making things more observable makes them easier to imitate."</button>
+<p id="q2" class="hidden">👉 Think about trends—why do visible behaviors spread faster?</p>
+
+</div>
+</section>
+
+<section id="reflection">
+<div class="card">
+<h2>Before & After Reading</h2>
+<textarea rows="4" style="width:100%" placeholder="Before reading: What makes content go viral?"></textarea>
+<textarea rows="4" style="width:100%" placeholder="After reading: What did you learn?"></textarea>
+</div>
+
+<div class="card">
+<h2>Reflection Prompts</h2>
+<ul>
+<li>How can you use STEPPS in your own posts?</li>
+<li>Which concept is hardest for you to apply?</li>
+<li>Think of a viral post—why did it spread?</li>
+<li>How do YOU decide what to share?</li>
+<li>What emotions do your posts create?</li>
+<li>How can you make your content more useful?</li>
+<li>What would you change about your current content strategy?</li>
+</ul>
+</div>
+</section>
+
+<section id="discussion">
+<div class="card">
+<h2>Discussion Questions</h2>
+<ul>
+<li>Is viral content always good content? Why or why not?</li>
+<li>Which STEPPS factor is most important today?</li>
+<li>Can something go viral without emotion?</li>
+<li>How do influencers use STEPPS?</li>
+<li>Should brands try to “go viral” or focus on consistency?</li>
+<li>What are examples of bad viral content?</li>
+<li>How can businesses use storytelling better?</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Mini Writing Prompt</h2>
+<p>Create one social media post idea using at least TWO STEPPS concepts. Explain your choices.</p>
+</div>
+</section>
+
+<section id="quiz">
+<div class="card">
+<h2>Self-Check Quiz</h2>
+
+<p>1. What does "Social Currency" mean?</p>
+<button class="quiz-btn" onclick="check(this, true)">Makes people look good</button>
+<button class="quiz-btn" onclick="check(this, false)">Is always useful</button>
+<div class="feedback"></div>
+
+<p>2. Which factor focuses on emotion?</p>
+<button class="quiz-btn" onclick="check(this, true)">Emotion</button>
+<button class="quiz-btn" onclick="check(this, false)">Public</button>
+<div class="feedback"></div>
+
+<p>3. What helps content stay in people’s minds?</p>
+<button class="quiz-btn" onclick="check(this, true)">Triggers</button>
+<button class="quiz-btn" onclick="check(this, false)">Stories</button>
+<div class="feedback"></div>
+
+<p>4. What spreads ideas naturally?</p>
+<button class="quiz-btn" onclick="check(this, true)">Stories</button>
+<button class="quiz-btn" onclick="check(this, false)">Logos</button>
+<div class="feedback"></div>
+
+</div>
+</section>
+
+<script>
+function openTab(evt, tabName) {
+  let sections = document.querySelectorAll("section");
+  sections.forEach(s => s.classList.remove("active"));
+
+  let tabs = document.querySelectorAll(".tab");
+  tabs.forEach(t => t.classList.remove("active"));
+
+  document.getElementById(tabName).classList.add("active");
+  evt.currentTarget.classList.add("active");
+}
+
+function toggle(id) {
+  let el = document.getElementById(id);
+  el.classList.toggle("hidden");
+}
+
+function check(btn, correct) {
+  let feedback = btn.parentElement.querySelector(".feedback");
+  if(correct){
+    feedback.innerHTML = "✅ Correct! This matches the concept.";
+  } else {
+    feedback.innerHTML = "❌ Not quite. Review the STEPPS framework.";
+  }
+}
+</script>
+
+</body>
+</html>
