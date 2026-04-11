@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM Chapter 1: The Strategic Nature of HR</title>
+    <style>
+        :root {
+            --primary-orange: #FF8C00;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-light: #f4f4f4;
+            --text-dim: #cccccc;
+            --accent-black: #000000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--dark-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--accent-black);
+            border-bottom: 4px solid var(--primary-orange);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--primary-orange);
+            margin: 0;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Introduction Section */
+        .intro-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-left: 5px solid var(--primary-orange);
+            margin-bottom: 30px;
+        }
+
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: -2px;
+        }
+
+        .tab-btn {
+            background: var(--accent-black);
+            color: var(--text-light);
+            border: 2px solid var(--primary-orange);
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            flex: 1 1 150px;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary-orange);
+            color: var(--accent-black);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border: 2px solid var(--primary-orange);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Interactive Map/List Styles */
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .glossary-term {
+            background: var(--accent-black);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .glossary-term b {
+            color: var(--primary-orange);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Quote Explorer */
+        .quote-card {
+            background: #3d3d3d;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .quote-card:hover {
+            border-color: var(--primary-orange);
+        }
+
+        .quote-analysis {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--primary-orange);
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background: var(--accent-black);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            margin: 5px 0;
+            background: #333;
+            border: 1px solid var(--primary-orange);
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .option-btn:hover {
+            background: #444;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .correct { background: #1b4d1b; color: #fff; }
+        .incorrect { background: #661a1a; color: #fff; }
+
+        /* General Utilities */
+        h2, h3 { color: var(--primary-orange); }
+        .reflection-area {
+            background: #000;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            background: #222;
+            color: white;
+            border: 1px solid var(--primary-orange);
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Essentials of HRM: Chapter 1</h1>
+        <p><i>HR 6th Edition</i> by DeNisi & Griffin</p>
+    </div>
+</header>
+
+<div class="container">
+    
+    <section class="intro-box">
+        <h2>Welcome to the HR Journey</h2>
+        <p>This mini-lesson will guide you through <b>Chapter 1: The Nature of Human Resource Management</b>. In this course, we treat this book as our <b>common read</b>. You will learn that HR isn't just about hiring and firing—it’s about how people give a company its "competitive edge."</p>
+        <p><b>Your Mission:</b> Complete this module before our next class to master the core concepts of human capital and strategic roles.</p>
+    </section>
+
+    <nav class="tabs" role="tablist">
+        <button class="tab-btn active" onclick="openTab(event, 'overview')" role="tab">Core Overview</button>
+        <button class="tab-btn" onclick="openTab(event, 'analysis')" role="tab">Close Reading</button>
+        <button class="tab-btn" onclick="openTab(event, 'reflection')" role="tab">Reflection</button>
+        <button class="tab-btn" onclick="openTab(event, 'discussion')" role="tab">Application</button>
+        <button class="tab-btn" onclick="openTab(event, 'quiz')" role="tab">Self-Check Quiz</button>
+    </nav>
+
+    <div id="overview" class="tab-content active" role="tabpanel">
+        <h2>Key Terms & Concepts</h2>
+        <p>Before diving into the text, familiarize yourself with these essential terms. These are the "building blocks" for the entire semester.</p>
+        
+        <div class="glossary-grid">
+            <div class="glossary-term">
+                <b>Human Resource Management (HRM)</b>
+                The set of organizational activities directed at attracting, developing, and maintaining an effective workforce.
+            </div>
+            <div class="glossary-term">
+                <b>Human Capital</b>
+                The collective value of the capabilities, knowledge, skills, life experiences, and motivation
