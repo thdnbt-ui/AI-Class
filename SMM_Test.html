@@ -1,234 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contagious: Why Things Catch On - Interactive Lesson</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM Chapter 1: The Strategic Nature of HR</title>
+    <style>
+        :root {
+            --primary-orange: #FF8C00;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-light: #f4f4f4;
+            --text-dim: #cccccc;
+            --accent-black: #000000;
+        }
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f4f7fb;
-  color: #1f2d3d;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--dark-bg);
+            margin: 0;
+            padding: 0;
+        }
 
-header {
-  background: #2c3e50;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
+        header {
+            background-color: var(--accent-black);
+            border-bottom: 4px solid var(--primary-orange);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
 
-nav {
-  display: flex;
-  background: #34495e;
-}
+        header h1 {
+            color: var(--primary-orange);
+            margin: 0;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-nav button {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  background: #34495e;
-  color: white;
-  cursor: pointer;
-}
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
 
-nav button:hover, nav button.active {
-  background: #1abc9c;
-}
+        /* Introduction Section */
+        .intro-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-left: 5px solid var(--primary-orange);
+            margin-bottom: 30px;
+        }
 
-section {
-  display: none;
-  padding: 20px;
-}
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: -2px;
+        }
 
-section.active {
-  display: block;
-}
+        .tab-btn {
+            background: var(--accent-black);
+            color: var(--text-light);
+            border: 2px solid var(--primary-orange);
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            flex: 1 1 150px;
+        }
 
-.card {
-  background: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-}
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary-orange);
+            color: var(--accent-black);
+        }
 
-button.quiz-btn {
-  margin-top: 10px;
-  padding: 8px;
-  background: #1abc9c;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border: 2px solid var(--primary-orange);
+            animation: fadeIn 0.4s ease;
+        }
 
-.feedback {
-  margin-top: 10px;
-  font-weight: bold;
-}
+        .tab-content.active {
+            display: block;
+        }
 
-.hidden {
-  display: none;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-</style>
+        /* Interactive Map/List Styles */
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .glossary-term {
+            background: var(--accent-black);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .glossary-term b {
+            color: var(--primary-orange);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Quote Explorer */
+        .quote-card {
+            background: #3d3d3d;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .quote-card:hover {
+            border-color: var(--primary-orange);
+        }
+
+        .quote-analysis {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--primary-orange);
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background: var(--accent-black);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            margin: 5px 0;
+            background: #333;
+            border: 1px solid var(--primary-orange);
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .option-btn:hover {
+            background: #444;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .correct { background: #1b4d1b; color: #fff; }
+        .incorrect { background: #661a1a; color: #fff; }
+
+        /* General Utilities */
+        h2, h3 { color: var(--primary-orange); }
+        .reflection-area {
+            background: #000;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            background: #222;
+            color: white;
+            border: 1px solid var(--primary-orange);
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
-<h1>Contagious: Why Things Catch On</h1>
-<p>Social Media Marketing & Content Creation</p>
+    <div class="container">
+        <h1>Essentials of HRM: Chapter 1</h1>
+        <p><i>HR 6th Edition</i> by DeNisi & Griffin</p>
+    </div>
 </header>
 
-<nav>
-<button class="tab active" onclick="openTab(event, 'overview')">Core Overview</button>
-<button class="tab" onclick="openTab(event, 'analysis')">Close Reading</button>
-<button class="tab" onclick="openTab(event, 'reflection')">Reflection</button>
-<button class="tab" onclick="openTab(event, 'discussion')">Discussion</button>
-<button class="tab" onclick="openTab(event, 'quiz')">Self-Check Quiz</button>
-</nav>
+<div class="container">
+    
+    <section class="intro-box">
+        <h2>Welcome to the HR Journey</h2>
+        <p>This mini-lesson will guide you through <b>Chapter 1: The Nature of Human Resource Management</b>. In this course, we treat this book as our <b>common read</b>. You will learn that HR isn't just about hiring and firing—it’s about how people give a company its "competitive edge."</p>
+        <p><b>Your Mission:</b> Complete this module before our next class to master the core concepts of human capital and strategic roles.</p>
+    </section>
 
-<section id="overview" class="active">
-<div class="card">
-<h2>What You Will Learn</h2>
-<p>In this lesson, you will learn how and why content spreads online using the STEPPS framework. You will apply these ideas to real social media content and your own work.</p>
+    <nav class="tabs" role="tablist">
+        <button class="tab-btn active" onclick="openTab(event, 'overview')" role="tab">Core Overview</button>
+        <button class="tab-btn" onclick="openTab(event, 'analysis')" role="tab">Close Reading</button>
+        <button class="tab-btn" onclick="openTab(event, 'reflection')" role="tab">Reflection</button>
+        <button class="tab-btn" onclick="openTab(event, 'discussion')" role="tab">Application</button>
+        <button class="tab-btn" onclick="openTab(event, 'quiz')" role="tab">Self-Check Quiz</button>
+    </nav>
+
+    <div id="overview" class="tab-content active" role="tabpanel">
+        <h2>Key Terms & Concepts</h2>
+        <p>Before diving into the text, familiarize yourself with these essential terms. These are the "building blocks" for the entire semester.</p>
+        
+        <div class="glossary-grid">
+            <div class="glossary-term">
+                <b>Human Resource Management (HRM)</b>
+                The set of organizational activities directed at attracting, developing, and maintaining an effective workforce.
+            </div>
+            <div class="glossary-term">
+                <b>Human Capital</b>
+                The collective value of the capabilities, knowledge, skills, life experiences, and motivation of an organizational workforce.
+            </div>
+            <div class="glossary-term">
+                <b>Line Manager</b>
+                A person who is directly responsible for creating goods or services (like a floor supervisor or restaurant manager).
+            </div>
+            <div class="glossary-term">
+                <b>Knowledge Workers</b>
+                Employees whose main value to the organization is what they know (e.g., software engineers, architects, accountants).
+            </div>
+        </div>
+
+        <h3>The Relationship Map</h3>
+        <p>How does HR fit into a company? Think of it like this:</p>
+        <div style="background: #000; padding: 20px; border: 1px solid var(--primary-orange); border-radius: 8px; text-align: center;">
+            <p><b>Company Goals</b> <br> ↓ <br> <b>HR Strategy</b> <br> ↓ <br> <b>Line Managers</b> (Who execute the plan) <br> ↓ <br> <b>Employees</b> (Who create the value)</p>
+        </div>
+    </div>
+
+    <div id="analysis" class="tab-content" role="tabpanel">
+        <h2>Quote Explorer</h2>
+        <p>Click on the key insights below to see why they matter for your future career.</p>
+
+        <div class="quote-card" onclick="toggleQuote(this)">
+            <p>"Human Resource Management is no longer just a staff function. It is a strategic imperative."</p>
+            <div class="quote-analysis">
+                <b>Analysis:</b> In the past, HR was "personnel"—paperwork and benefits. Today, HR sits at the table with the CEO to decide how the company will grow.
+            </div>
+        </div>
+
+        <div class="quote-card" onclick="toggleQuote(this)">
+            <p>"Line managers are the ones who actually implement HR practices on a day-to-day basis."</p>
+            <div class="quote-analysis">
+                <b>Analysis:</b> You might not want to be an "HR Manager," but if you manage *any* people, you are doing HRM work every single day.
+            </div>
+        </div>
+
+        <h3>Trends to Watch</h3>
+        <ul>
+            <li><b>Globalization:</b> Hiring people from different cultures and time zones.</li>
+            <li><b>The Gig Economy:</b> Dealing with contractors vs. full-time staff.</li>
+            <li><b>Ethics/Sustainability:</b> How a company treats people is now a major part of its brand.</li>
+        </ul>
+    </div>
+
+    <div id="reflection" class="tab-content" role="tabpanel">
+        <h2>Connect to Your Story</h2>
+        <p>Answer these prompts to help you process the reading. This is for your own growth (no "right" answers!).</p>
+        
+        <div class="reflection-area">
+            <p><b>Prompt 1: Before Reading Takeaway</b><br>What was your first thought when you heard the term "Human Resources"? Has it changed after reading Chapter 1?</p>
+            <textarea placeholder="Type your thoughts here..."></textarea>
+        </div>
+
+        <div class="reflection-area">
+            <p><b>Prompt 2: Workplace Experience</b><br>Think of a boss you've had. Did they act more like a "Personnel Clerk" (focused on rules) or an "HR Leader" (focused on helping you grow)?</p>
+            <textarea placeholder="Type your thoughts here..."></textarea>
+        </div>
+
+        <div class="reflection-area">
+            <p><b>Prompt 3: The Knowledge Worker</b><br>Do you consider yourself a "knowledge worker" in your current role or future career? Why?</p>
+            <textarea placeholder="Type your thoughts here..."></textarea>
+        </div>
+    </div>
+
+    <div id="discussion" class="tab-content" role="tabpanel">
+        <h2>Ready for Class?</h2>
+        <p>We will use these questions for our in-class debate. Be prepared to share your stance.</p>
+        
+        <ol>
+            <li>If a company is struggling financially, is HR the first department that should be cut? Why or why not?</li>
+            <li>How does diversity (age, race, background) make a company more "competitive" rather than just "legally compliant"?</li>
+            <li>Think of a local business (like a coffee shop). Who is the "HR Manager" there? Who is the "Line Manager"?</li>
+            <li>How has technology changed the way you look for jobs? Is this better for the applicant or the company?</li>
+            <li>DeNisi and Griffin mention "Legal Compliance." Why is this a core goal of HR even in small businesses?</li>
+            <li>How can a manager balance the goal of "Productivity" with the goal of "Employee Well-being"?</li>
+        </ol>
+
+        <div style="margin-top: 30px; border: 2px dashed var(--primary-orange); padding: 15px;">
+            <h3>Pro-Tip for First-Gen Students</h3>
+            <p>Business textbooks often use "corporate-speak." If a term like <i>"Sustainable Competitive Advantage"</i> feels heavy, just think of it as: <b>"The secret sauce that keeps a business from going under."</b></p>
+        </div>
+    </div>
+
+    <div id="quiz" class="tab-content" role="tabpanel">
+        <h2>Self-Check Quiz</h2>
+        <p>Test your knowledge of Chapter 1. You can retake this as many times as you like!</p>
+
+        <div class="quiz-container">
+            <div class="question">
+                <p>1. What is the primary difference between "Human Capital" and "Personnel"?</p>
+                <button class="option-btn" onclick="checkAnswer(this, false, 'Actually, Personnel viewed employees as costs. Human Capital views them as value-adding assets.')">A. They are the exact same thing.</button>
+                <button class="option-btn" onclick="checkAnswer(this, true, 'Correct! Capital is something you invest in to get a return; personnel was just a cost to manage.')">B. Human Capital treats employees as assets; Personnel treats them as costs.</button>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p>2. Who is responsible for HR activities in a large organization?</p>
+                <button class="option-btn" onclick="checkAnswer(this, false, 'Not quite. While HR specialized exist, Line Managers carry out the work daily.')">A. Only the HR Department.</button>
+                <button class="option-btn" onclick="checkAnswer(this, true, 'Spot on. It is a partnership between specialists and managers on the floor.')">B. Both HR Specialists and Line Managers.</button>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p>3. Which of these is a major goal of HRM according to the text?</p>
+                <button class="option-btn" onclick="checkAnswer(this, true, 'Yes! Ensuring the company follows the law is one of the three core goals mentioned.')">A. Complying with legal and social obligations.</button>
+                <button class="option-btn" onclick="checkAnswer(this, false, 'Not really. HR tries to keep employees, as turnover is expensive!')">B. Encouraging employees to quit often.</button>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p>4. Why is the "Knowledge Worker" more important today than in the 1950s?</p>
+                <button class="option-btn" onclick="checkAnswer(this, true, 'Correct. Information and skill are the primary drivers of the modern economy.')">A. Because modern jobs rely more on specialized information than manual labor.</button>
+                <button class="option-btn" onclick="checkAnswer(this, false, 'Actually, knowledge workers often require higher pay and more careful management.')">B. Because they are cheaper to hire.</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Course Module | Created for Business Students | Reference: DeNisi & Griffin, HR 6e</p>
+    </footer>
 </div>
-
-<div class="card">
-<h2>STEPPS Framework</h2>
-<ul>
-<li><b>Social Currency:</b> People share things that make them look good</li>
-<li><b>Triggers:</b> What reminds people to share</li>
-<li><b>Emotion:</b> Content that makes people feel something spreads more</li>
-<li><b>Public:</b> Easy-to-see content spreads faster</li>
-<li><b>Practical Value:</b> Helpful information gets shared</li>
-<li><b>Stories:</b> People share stories, not ads</li>
-</ul>
-</div>
-</section>
-
-<section id="analysis">
-<div class="card">
-<h2>Close Reading Prompts</h2>
-<ul>
-<li>Which STEPPS concept stood out most to you?</li>
-<li>What example from the book was easiest to understand?</li>
-<li>How does emotion affect sharing behavior?</li>
-<li>Why do people share content even if it is not useful?</li>
-<li>What is one example of “social currency” in your life?</li>
-<li>How does visibility impact what spreads?</li>
-<li>What surprised you most about the book?</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Quote Explorer</h2>
-<p><b>Click to reveal insight:</b></p>
-
-<button onclick="toggle('q1')">"People don’t share information, they share emotions."</button>
-<p id="q1" class="hidden">👉 Why does emotional content perform better on TikTok or Instagram?</p>
-
-<button onclick="toggle('q2')">"Making things more observable makes them easier to imitate."</button>
-<p id="q2" class="hidden">👉 Think about trends—why do visible behaviors spread faster?</p>
-
-</div>
-</section>
-
-<section id="reflection">
-<div class="card">
-<h2>Before & After Reading</h2>
-<textarea rows="4" style="width:100%" placeholder="Before reading: What makes content go viral?"></textarea>
-<textarea rows="4" style="width:100%" placeholder="After reading: What did you learn?"></textarea>
-</div>
-
-<div class="card">
-<h2>Reflection Prompts</h2>
-<ul>
-<li>How can you use STEPPS in your own posts?</li>
-<li>Which concept is hardest for you to apply?</li>
-<li>Think of a viral post—why did it spread?</li>
-<li>How do YOU decide what to share?</li>
-<li>What emotions do your posts create?</li>
-<li>How can you make your content more useful?</li>
-<li>What would you change about your current content strategy?</li>
-</ul>
-</div>
-</section>
-
-<section id="discussion">
-<div class="card">
-<h2>Discussion Questions</h2>
-<ul>
-<li>Is viral content always good content? Why or why not?</li>
-<li>Which STEPPS factor is most important today?</li>
-<li>Can something go viral without emotion?</li>
-<li>How do influencers use STEPPS?</li>
-<li>Should brands try to “go viral” or focus on consistency?</li>
-<li>What are examples of bad viral content?</li>
-<li>How can businesses use storytelling better?</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Mini Writing Prompt</h2>
-<p>Create one social media post idea using at least TWO STEPPS concepts. Explain your choices.</p>
-</div>
-</section>
-
-<section id="quiz">
-<div class="card">
-<h2>Self-Check Quiz</h2>
-
-<p>1. What does "Social Currency" mean?</p>
-<button class="quiz-btn" onclick="check(this, true)">Makes people look good</button>
-<button class="quiz-btn" onclick="check(this, false)">Is always useful</button>
-<div class="feedback"></div>
-
-<p>2. Which factor focuses on emotion?</p>
-<button class="quiz-btn" onclick="check(this, true)">Emotion</button>
-<button class="quiz-btn" onclick="check(this, false)">Public</button>
-<div class="feedback"></div>
-
-<p>3. What helps content stay in people’s minds?</p>
-<button class="quiz-btn" onclick="check(this, true)">Triggers</button>
-<button class="quiz-btn" onclick="check(this, false)">Stories</button>
-<div class="feedback"></div>
-
-<p>4. What spreads ideas naturally?</p>
-<button class="quiz-btn" onclick="check(this, true)">Stories</button>
-<button class="quiz-btn" onclick="check(this, false)">Logos</button>
-<div class="feedback"></div>
-
-</div>
-</section>
 
 <script>
-function openTab(evt, tabName) {
-  let sections = document.querySelectorAll("section");
-  sections.forEach(s => s.classList.remove("active"));
+    // Tab functionality
+    function openTab(evt, tabName) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
 
-  let tabs = document.querySelectorAll(".tab");
-  tabs.forEach(t => t.classList.remove("active"));
+    // Quote Explorer toggle
+    function toggleQuote(element) {
+        const analysis = element.querySelector('.quote-analysis');
+        if (analysis.style.display === "block") {
+            analysis.style.display = "none";
+        } else {
+            analysis.style.display = "block";
+        }
+    }
 
-  document.getElementById(tabName).classList.add("active");
-  evt.currentTarget.classList.add("active");
-}
-
-function toggle(id) {
-  let el = document.getElementById(id);
-  el.classList.toggle("hidden");
-}
-
-function check(btn, correct) {
-  let feedback = btn.parentElement.querySelector(".feedback");
-  if(correct){
-    feedback.innerHTML = "✅ Correct! This matches the concept.";
-  } else {
-    feedback.innerHTML = "❌ Not quite. Review the STEPPS framework.";
-  }
-}
+    // Quiz feedback
+    function checkAnswer(btn, isCorrect, feedbackText) {
+        const feedbackDiv = btn.parentElement.querySelector('.feedback');
+        feedbackDiv.innerHTML = feedbackText;
+        feedbackDiv.style.display = "block";
+        feedbackDiv.className = isCorrect ? "feedback correct" : "feedback incorrect";
+        
+        // Disable other buttons in the same question
+        const buttons = btn.parentElement.querySelectorAll('.option-btn');
+        buttons.forEach(b => b.style.opacity = "0.6");
+        btn.style.opacity = "1";
+        btn.style.borderWidth = "3px";
+    }
 </script>
 
 </body>
